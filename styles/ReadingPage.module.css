@@ -1,0 +1,174 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2.5em;
+}
+
+.instruction {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.deckContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.card {
+  width: 120px;
+  height: 200px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card.selected .cardInner {
+  transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+}
+
+.cardImage {
+  width: 100%;
+  min-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.reversed {
+  transform: rotate(180deg);
+}
+
+.button {
+  display: block;
+  margin: 30px auto;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #357abd;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.readingContainer {
+  margin-top: 40px;
+}
+
+.selectedCardsContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.selectedCard {
+  width: 300px;
+  margin: 20px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardDetails {
+  margin-top: 20px;
+}
+
+.cardName {
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+}
+
+.cardInfo {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.cardDescription {
+  font-size: 0.95em;
+  margin: 15px 0;
+  text-align: left;
+  color: #444;
+}
+
+.cardInterpretation {
+  font-size: 0.95em;
+  margin-top: 15px;
+  text-align: left;
+  color: #4a90e2;
+}
+
+.interpretationContainer {
+  margin-top: 40px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.interpretationTitle {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.interpretation {
+  font-size: 1.1em;
+  line-height: 1.6;
+  text-align: left;
+  white-space: pre-line;
+  color: #444;
+}
