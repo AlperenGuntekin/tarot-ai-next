@@ -18,22 +18,37 @@ const openai = new openai_1.default({
     apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 });
 const getReading = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b, _c, _d, _e;
     const { questionType, selectedCards, question } = req.body;
-    let prompt = `You are a tarot card reader. Interpret the following cards for a ${questionType} reading:\n`;
+    let messages = [
+        {
+            role: 'system',
+            content: `You are a tarot card reader. Interpret the following cards for a ${questionType} reading.`,
+        },
+    ];
     selectedCards.forEach((card, index) => {
-        prompt += `${index + 1}. ${card.name} (${card.isReversed ? 'Reversed' : 'Upright'}): ${card.description}\n`;
+        messages.push({
+            role: 'user',
+            content: `${index + 1}. ${card.name} (${card.isReversed ? 'Reversed' : 'Upright'}): ${card.description}`,
+        });
     });
     if (questionType === 'specific' || questionType === 'yesNo') {
-        prompt += `\nThe question is: ${question}\n`;
+        messages.push({
+            role: 'user',
+            content: `The question is: ${question}`,
+        });
     }
-    prompt += `\nGive a detailed interpretation for the above cards.`;
+    messages.push({
+        role: 'user',
+        content: 'Give a detailed interpretation for the above cards.',
+    });
     try {
-        const response = yield openai.completions.create({
-            model: 'text-davinci-003',
-            prompt: prompt,
+        const response = yield openai.chat.completions.create({
+            model: 'gpt-3.5-turbo',
+            messages: messages, // Cast to any to satisfy TypeScript
             max_tokens: 500,
         });
-        const interpretation = response.choices[0].text.trim();
+        const interpretation = (_e = (_d = (_c = (_b = (_a = response.choices) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.message) === null || _c === void 0 ? void 0 : _c.content) === null || _d === void 0 ? void 0 : _d.trim()) !== null && _e !== void 0 ? _e : 'No interpretation available';
         res.json({ interpretation });
     }
     catch (error) {

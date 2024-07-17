@@ -13,27 +13,45 @@ export const getReading = async (req: Request, res: Response) => {
     question: string;
   };
 
-  let prompt = `You are a tarot card reader. Interpret the following cards for a ${questionType} reading:\n`;
+  let messages: { role: string; content: string }[] = [
+    {
+      role: 'system',
+      content: `You are a tarot card reader. Interpret the following cards for a ${questionType} reading.`,
+    },
+  ];
+
   selectedCards.forEach((card, index) => {
-    prompt += `${index + 1}. ${card.name} (${
-      card.isReversed ? 'Reversed' : 'Upright'
-    }): ${card.description}\n`;
+    messages.push({
+      role: 'user',
+      content: `${index + 1}. ${card.name} (${
+        card.isReversed ? 'Reversed' : 'Upright'
+      }): ${card.description}`,
+    });
   });
 
   if (questionType === 'specific' || questionType === 'yesNo') {
-    prompt += `\nThe question is: ${question}\n`;
+    messages.push({
+      role: 'user',
+      content: `The question is: ${question}`,
+    });
   }
 
-  prompt += `\nGive a detailed interpretation for the above cards.`;
+  messages.push({
+    role: 'user',
+    content: 'Give a detailed interpretation for the above cards.',
+  });
 
   try {
-    const response = await openai.completions.create({
-      model: 'text-davinci-003',
-      prompt: prompt,
+    const response = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: messages as any, // Cast to any to satisfy TypeScript
       max_tokens: 500,
     });
 
-    const interpretation = response.choices[0].text.trim();
+    const interpretation =
+      response.choices?.[0]?.message?.content?.trim() ??
+      'No interpretation available';
+
     res.json({ interpretation });
   } catch (error) {
     console.error(error);

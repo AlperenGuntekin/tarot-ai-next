@@ -38,14 +38,17 @@ const ReadingPage: React.FC = () => {
           }),
         });
 
-        if (response.ok) {
-          const data = await response.json();
+        const responseText = await response.text();
+        console.log(responseText); // Log the response text for debugging
+
+        try {
+          const data = JSON.parse(responseText); // Parse the response text
           setReading({
             cards: selectedCards,
             interpretation: data.interpretation,
           });
-        } else {
-          console.error('Failed to get the interpretation');
+        } catch (error) {
+          console.error('Failed to parse JSON:', error);
         }
       } else {
         setReading(interpretReading(selectedCards));
