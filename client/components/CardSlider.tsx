@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Card } from '../types';
+import { Card } from '../../types';
 import styles from '../styles/CardSlider.module.css';
 
 type CardSliderProps = {
