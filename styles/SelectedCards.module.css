@@ -1,0 +1,59 @@
+.selectedCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.selectedCard {
+  width: 250px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.selectedCard:hover {
+  transform: scale(1.01);
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.reversed {
+  transform: rotate(180deg);
+}
+
+.cardDetails {
+  margin-top: 10px;
+}
+
+.cardName {
+  font-weight: bold;
+  margin: 5px 0;
+  color: #333;
+}
+
+.cardInfo {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.cardDescription {
+  font-size: 0.85em;
+  margin: 10px 0;
+  text-align: left;
+  color: #444;
+}
+
+.cardInterpretation {
+  font-size: 0.85em;
+  color: #4a90e2;
+}

@@ -2,12 +2,19 @@ import { useState } from 'react';
 import { Card, Reading } from '../types';
 import { shuffleDeck, interpretReading } from '../utils/tarotUtils';
 import styles from '../styles/ReadingPage.module.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import QuestionTypeSelector from '../components/QuestionTypeSelector';
+import CardSlider from '../components/CardSlider';
+import SelectedCards from '../components/SelectedCards';
+import ReadingInterpretation from '../components/ReadingInterpretation';
 
 const ReadingPage: React.FC = () => {
   const [deck, setDeck] = useState<Card[]>(shuffleDeck());
   const [selectedCards, setSelectedCards] = useState<Card[]>([]);
   const [reading, setReading] = useState<Reading | null>(null);
   const [isSelecting, setIsSelecting] = useState(true);
+  const [questionType, setQuestionType] = useState<string | null>(null);
 
   const handleCardClick = (card: Card) => {
     if (selectedCards.length < 3 && !selectedCards.includes(card)) {
@@ -27,46 +34,29 @@ const ReadingPage: React.FC = () => {
     setSelectedCards([]);
     setReading(null);
     setIsSelecting(true);
+    setQuestionType(null);
+  };
+
+  const selectQuestionType = (type: string) => {
+    setQuestionType(type);
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Tarot Reading</h1>
-      {isSelecting ? (
+      {!questionType ? (
+        <QuestionTypeSelector selectQuestionType={selectQuestionType} />
+      ) : isSelecting ? (
         <>
           <p className={styles.instruction}>
-            Select three cards for your reading
+            Select the 3 cards you want by sliding the deck for your{' '}
+            {questionType} reading.
           </p>
-          <div className={styles.deckContainer}>
-            {deck.map((card) => (
-              <div
-                key={card.name}
-                className={`${styles.card} ${
-                  selectedCards.includes(card) ? styles.selected : ''
-                }`}
-                onClick={() => handleCardClick(card)}
-              >
-                <div className={styles.cardInner}>
-                  <div className={styles.cardFront}>
-                    <img
-                      src="cards/card-back.png"
-                      alt="Card Back"
-                      className={styles.cardImage}
-                    />
-                  </div>
-                  <div className={styles.cardBack}>
-                    <img
-                      src={`/cards/${card.img}`}
-                      alt={card.name}
-                      className={`${styles.cardImage} ${
-                        card.isReversed ? styles.reversed : ''
-                      }`}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <CardSlider
+            deck={deck}
+            selectedCards={selectedCards}
+            handleCardClick={handleCardClick}
+          />
           <button
             className={styles.button}
             onClick={performReading}
@@ -77,40 +67,8 @@ const ReadingPage: React.FC = () => {
         </>
       ) : (
         <div className={styles.readingContainer}>
-          <div className={styles.selectedCardsContainer}>
-            {selectedCards.map((card) => (
-              <div key={card.name} className={styles.selectedCard}>
-                <img
-                  src={`/cards/${card.img}`}
-                  alt={card.name}
-                  className={`${styles.cardImage} ${
-                    card.isReversed ? styles.reversed : ''
-                  }`}
-                />
-                <div className={styles.cardDetails}>
-                  <h3 className={styles.cardName}>{card.name}</h3>
-                  <p className={styles.cardInfo}>
-                    {card.arcana}, {card.suit ? `${card.suit}, ` : ''}Number:{' '}
-                    {card.number}
-                  </p>
-                  <p className={styles.cardDescription}>{card.description}</p>
-                  <p className={styles.cardInterpretation}>
-                    {card.isReversed
-                      ? card.interpretation.reversed
-                      : card.interpretation.upright}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-          {reading && (
-            <div className={styles.interpretationContainer}>
-              <h2 className={styles.interpretationTitle}>
-                Reading Interpretation
-              </h2>
-              <p className={styles.interpretation}>{reading.interpretation}</p>
-            </div>
-          )}
+          <SelectedCards selectedCards={selectedCards} />
+          {reading && <ReadingInterpretation reading={reading} />}
           <button className={styles.button} onClick={resetReading}>
             New Reading
           </button>
