@@ -1,0 +1,22 @@
+.container {
+  margin-top: 40px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.title {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.text {
+  font-size: 1.1em;
+  line-height: 1.6;
+  text-align: left;
+  white-space: pre-line;
+  color: #444;
+}

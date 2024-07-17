@@ -156,3 +156,24 @@
   white-space: pre-line;
   color: #444;
 }
+
+.questionContainer {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.questionLabel {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.questionInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Card, Reading } from '../types';
 import { shuffleDeck, interpretReading } from '../utils/tarotUtils';
-import styles from '../styles/ReadingPage.module.css';
+import styles from '../client/styles/ReadingPage.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import QuestionTypeSelector from '../components/QuestionTypeSelector';
-import CardSlider from '../components/CardSlider';
-import SelectedCards from '../components/SelectedCards';
-import ReadingInterpretation from '../components/ReadingInterpretation';
+import CardSlider from '@/client/components/CardSlider';
+import QuestionTypeSelector from '@/client/components/QuestionTypeSelector';
+import ReadingInterpretation from '@/client/components/ReadingInterpretation';
+import SelectedCards from '@/client/components/SelectedCards';
 
 const ReadingPage: React.FC = () => {
   const [deck, setDeck] = useState<Card[]>(shuffleDeck());
@@ -15,6 +15,7 @@ const ReadingPage: React.FC = () => {
   const [reading, setReading] = useState<Reading | null>(null);
   const [isSelecting, setIsSelecting] = useState(true);
   const [questionType, setQuestionType] = useState<string | null>(null);
+  const [specificQuestion, setSpecificQuestion] = useState<string>('');
 
   const handleCardClick = (card: Card) => {
     if (selectedCards.length < 3 && !selectedCards.includes(card)) {
@@ -22,9 +23,33 @@ const ReadingPage: React.FC = () => {
     }
   };
 
-  const performReading = () => {
-    if (selectedCards.length === 3) {
-      setReading(interpretReading(selectedCards));
+  const performReading = async () => {
+    if (selectedCards.length === 3 && questionType) {
+      if (['specific', 'yesNo', 'birthChart'].includes(questionType)) {
+        const response = await fetch('http://localhost:5000/api/getReading', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            questionType,
+            selectedCards,
+            question: specificQuestion,
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setReading({
+            cards: selectedCards,
+            interpretation: data.interpretation,
+          });
+        } else {
+          console.error('Failed to get the interpretation');
+        }
+      } else {
+        setReading(interpretReading(selectedCards));
+      }
       setIsSelecting(false);
     }
   };
@@ -35,6 +60,7 @@ const ReadingPage: React.FC = () => {
     setReading(null);
     setIsSelecting(true);
     setQuestionType(null);
+    setSpecificQuestion('');
   };
 
   const selectQuestionType = (type: string) => {
@@ -49,9 +75,25 @@ const ReadingPage: React.FC = () => {
       ) : isSelecting ? (
         <>
           <p className={styles.instruction}>
-            Select the 3 cards you want by sliding the deck for your{' '}
-            {questionType} reading.
+            Select three cards for your {questionType} reading
           </p>
+          {questionType === 'specific' || questionType === 'yesNo' ? (
+            <div className={styles.questionContainer}>
+              <label
+                htmlFor="specificQuestion"
+                className={styles.questionLabel}
+              >
+                Enter your question:
+              </label>
+              <input
+                type="text"
+                id="specificQuestion"
+                value={specificQuestion}
+                onChange={(e) => setSpecificQuestion(e.target.value)}
+                className={styles.questionInput}
+              />
+            </div>
+          ) : null}
           <CardSlider
             deck={deck}
             selectedCards={selectedCards}
@@ -68,7 +110,9 @@ const ReadingPage: React.FC = () => {
       ) : (
         <div className={styles.readingContainer}>
           <SelectedCards selectedCards={selectedCards} />
-          {reading && <ReadingInterpretation reading={reading} />}
+          {reading && (
+            <ReadingInterpretation interpretation={reading.interpretation} />
+          )}
           <button className={styles.button} onClick={resetReading}>
             New Reading
           </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../types';
+import { Card } from '../../types';
 import styles from '../styles/SelectedCards.module.css';
 
 type SelectedCardsProps = {

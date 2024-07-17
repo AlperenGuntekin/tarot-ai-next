@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/ReadingPage.module.css';
+import styles from '../styles/QuestionTypeSelector.module.css';
 
 type QuestionTypeSelectorProps = {
   selectQuestionType: (type: string) => void;
@@ -9,15 +9,9 @@ const QuestionTypeSelector: React.FC<QuestionTypeSelectorProps> = ({
   selectQuestionType,
 }) => {
   return (
-    <>
+    <div className={styles.container}>
       <p className={styles.instruction}>Choose your type of reading:</p>
       <div className={styles.optionsContainer}>
-        <button
-          className={styles.optionButton}
-          onClick={() => selectQuestionType('general')}
-        >
-          General Reading
-        </button>
         <button
           className={styles.optionButton}
           onClick={() => selectQuestionType('love')}
@@ -32,15 +26,15 @@ const QuestionTypeSelector: React.FC<QuestionTypeSelectorProps> = ({
         </button>
         <button
           className={styles.optionButton}
-          onClick={() => selectQuestionType('specific')}
+          onClick={() => selectQuestionType('general')}
         >
-          Specific Question
+          General Reading
         </button>
         <button
           className={styles.optionButton}
-          onClick={() => selectQuestionType('yesNo')}
+          onClick={() => selectQuestionType('specific')}
         >
-          Yes or No Tarot
+          Specific Question
         </button>
         <button
           className={styles.optionButton}
@@ -48,8 +42,14 @@ const QuestionTypeSelector: React.FC<QuestionTypeSelectorProps> = ({
         >
           Based on Birth Chart
         </button>
+        <button
+          className={styles.optionButton}
+          onClick={() => selectQuestionType('yesNo')}
+        >
+          Yes or No Tarot
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 
