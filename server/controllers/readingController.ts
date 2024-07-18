@@ -7,54 +7,53 @@ const openai = new OpenAI({
 });
 
 export const getReading = async (req: Request, res: Response) => {
-  const { questionType, selectedCards, question } = req.body as {
-    questionType: string;
-    selectedCards: Card[];
-    question: string;
-  };
+  const { questionType, selectedCards, question, birthChartInfo } =
+    req.body as {
+      questionType: string;
+      selectedCards: Card[];
+      question: string;
+      birthChartInfo: {
+        birthDate: string;
+        birthTime: string;
+        birthPlace: string;
+      } | null;
+    };
 
-  let messages: { role: string; content: string }[] = [
-    {
-      role: 'system',
-      content: `You are a tarot card reader. Interpret the following cards for a ${questionType} reading.`,
-    },
-  ];
-
+  let prompt = `You are a tarot card reader. Interpret the following cards for a ${questionType} reading:\n`;
   selectedCards.forEach((card, index) => {
-    messages.push({
-      role: 'user',
-      content: `${index + 1}. ${card.name} (${
-        card.isReversed ? 'Reversed' : 'Upright'
-      }): ${card.description}`,
-    });
+    prompt += `${index + 1}. ${card.name} (${
+      card.isReversed ? 'Reversed' : 'Upright'
+    }): ${card.description}\n`;
   });
 
   if (questionType === 'specific' || questionType === 'yesNo') {
-    messages.push({
-      role: 'user',
-      content: `The question is: ${question}`,
-    });
+    prompt += `\nThe question is: ${question}\n`;
   }
 
-  messages.push({
-    role: 'user',
-    content: 'Give a detailed interpretation for the above cards.',
-  });
+  if (questionType === 'birthChart' && birthChartInfo) {
+    prompt += `\nBirth Chart Information:\nDate: ${birthChartInfo.birthDate}\nTime: ${birthChartInfo.birthTime}\nPlace: ${birthChartInfo.birthPlace}\n`;
+  }
+
+  prompt += `\nGive a detailed interpretation for the above cards.`;
+
+  const messages = [
+    { role: 'system', content: 'You are a tarot card reader.' },
+    { role: 'user', content: prompt },
+  ];
 
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
-      messages: messages as any, // Cast to any to satisfy TypeScript
+      messages: messages as any,
       max_tokens: 500,
     });
 
     const interpretation =
       response.choices?.[0]?.message?.content?.trim() ??
-      'No interpretation available';
-
+      'Failed to get the interpretation from OpenAI';
     res.json({ interpretation });
   } catch (error) {
-    console.error(error);
+    console.error('Failed to get the interpretation from OpenAI', error);
     res
       .status(500)
       .json({ error: 'Failed to get the interpretation from OpenAI' });

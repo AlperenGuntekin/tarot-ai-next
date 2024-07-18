@@ -21,6 +21,23 @@
   color: #666;
 }
 
+.textField {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.textField:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
 .optionsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -42,6 +59,64 @@
 
 .optionButton:hover {
   background-color: #357abd;
+}
+
+.optionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deckContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.card {
+  width: 120px;
+  height: 200px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card.selected .cardInner {
+  transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.reversed {
+  transform: rotate(180deg);
 }
 
 .button {
@@ -68,75 +143,59 @@
 
 .readingContainer {
   margin-top: 40px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .selectedCardsContainer {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 20px;
   margin-bottom: 40px;
 }
 
 .selectedCard {
-  width: 200px;
+  width: 300px;
+  margin: 20px;
   text-align: center;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.selectedCard:hover {
-  transform: scale(1.05);
-}
-
-.cardImage {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.reversed {
-  transform: rotate(180deg);
 }
 
 .cardDetails {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .cardName {
   font-weight: bold;
-  margin: 5px 0;
+  margin: 10px 0;
   color: #333;
 }
 
 .cardInfo {
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #666;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .cardDescription {
-  font-size: 0.85em;
-  margin: 10px 0;
+  font-size: 0.95em;
+  margin: 15px 0;
   text-align: left;
   color: #444;
 }
 
 .cardInterpretation {
-  font-size: 0.85em;
+  font-size: 0.95em;
+  margin-top: 15px;
+  text-align: left;
   color: #4a90e2;
 }
 
 .interpretationContainer {
   margin-top: 40px;
-  text-align: center;
+  text-align: left;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -152,28 +211,6 @@
 .interpretation {
   font-size: 1.1em;
   line-height: 1.6;
-  text-align: left;
-  white-space: pre-line;
   color: #444;
-}
-
-.questionContainer {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.questionLabel {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 1.1em;
-  color: #333;
-}
-
-.questionInput {
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  white-space: pre-wrap;
 }

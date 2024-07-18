@@ -17,5 +17,4 @@ app.post('/api/getReading', readingController_1.getReading);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-    console.log(`OpenAI API Key: ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`);
 });
