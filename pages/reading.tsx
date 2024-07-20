@@ -5,6 +5,7 @@ import styles from '../client/styles/ReadingPage.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CardSlider from '@/client/components/CardSlider';
+import LoadingSpinner from '@/client/components/LoadingScreen';
 
 const ReadingPage: React.FC = () => {
   const [deck, setDeck] = useState<Card[]>(shuffleDeck());
@@ -233,7 +234,7 @@ const ReadingPage: React.FC = () => {
           </button>
         </>
       ) : isLoading ? (
-        <p>Loading...</p>
+        <LoadingSpinner />
       ) : (
         <div className={styles.readingContainer}>
           <div className={styles.selectedCardsContainer}>
