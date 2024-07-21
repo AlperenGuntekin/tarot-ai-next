@@ -1,16 +1,45 @@
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 2em;
+  }
+
+  .instruction {
+    font-size: 1em;
+  }
+
+  .textField {
+    width: 90%;
+    padding: 8px;
+  }
+
+  .optionButton {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+
+  .selectedCard {
+    width: 250px;
+    padding: 15px;
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  color: #e0e0e0;
   min-height: 100vh;
 }
 
 .title {
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
+  color: #e0e0e0;
   font-size: 2.5em;
 }
 
@@ -18,7 +47,7 @@
   text-align: center;
   margin-bottom: 30px;
   font-size: 1.2em;
-  color: #666;
+  color: #b0b0b0;
 }
 
 .textField {
@@ -27,8 +56,10 @@
   margin: 10px auto;
   padding: 10px;
   font-size: 1em;
-  border: 1px solid #ccc;
+  border: 1px solid #333;
   border-radius: 5px;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -49,16 +80,19 @@
 .optionButton {
   padding: 15px 30px;
   font-size: 1em;
-  cursor: pointer;
-  background-color: #4a90e2;
+  background-color: #3f3a7c;
   color: white;
   border: none;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  text-decoration: none;
 }
 
 .optionButton:hover {
-  background-color: #357abd;
+  background-color: #2a2352;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .optionButton:disabled {
@@ -125,15 +159,16 @@
   padding: 15px 30px;
   font-size: 1.2em;
   cursor: pointer;
-  background-color: #4a90e2;
+  background-color: #3f3a7c;
   color: white;
   border: none;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .button:hover {
-  background-color: #357abd;
+  background-color: #2a2352;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .button:disabled {
@@ -157,9 +192,9 @@
   width: 300px;
   margin: 20px;
   text-align: center;
-  background-color: white;
+  background-color: #1e1e1e;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   padding: 20px;
 }
 
@@ -170,12 +205,12 @@
 .cardName {
   font-weight: bold;
   margin: 10px 0;
-  color: #333;
+  color: #e0e0e0;
 }
 
 .cardInfo {
   font-size: 0.9em;
-  color: #666;
+  color: #b0b0b0;
   margin-bottom: 10px;
 }
 
@@ -183,7 +218,7 @@
   font-size: 0.95em;
   margin: 15px 0;
   text-align: left;
-  color: #444;
+  color: #c0c0c0;
 }
 
 .cardInterpretation {
@@ -196,21 +231,31 @@
 .interpretationContainer {
   margin-top: 40px;
   text-align: left;
-  background-color: white;
+  background-color: #1e1e1e;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   padding: 30px;
 }
 
 .interpretationTitle {
   font-size: 1.8em;
   margin-bottom: 20px;
-  color: #333;
+  color: #e0e0e0;
 }
 
 .interpretation {
   font-size: 1.1em;
   line-height: 1.6;
-  color: #444;
+  color: #c0c0c0;
   white-space: pre-wrap;
+}
+
+.readMoreButton {
+  background: none;
+  border: none;
+  color: #4a90e2;
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 0;
+  margin-left: 5px;
 }

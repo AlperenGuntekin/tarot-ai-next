@@ -18,6 +18,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
     dots: true,
     infinite: false,
     speed: 500,
+    centerPadding: '60px',
     slidesToShow: 11,
     slidesToScroll: 11,
     rows: 3,
@@ -25,8 +26,8 @@ const CardSlider: React.FC<CardSliderProps> = ({
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: true,
         },
@@ -34,7 +35,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
         },
@@ -42,7 +43,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },

@@ -1,0 +1,171 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #1d1d1d;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.navlink {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.navlink:hover {
+  background-color: #333;
+}
+
+.hero {
+  display: flex;
+  text-align: center;
+  margin-bottom: 50px;
+  background-size: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.ctaButton {
+  padding: 15px 30px;
+  font-size: 1em;
+  background-color: #3f3a7c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+}
+
+.ctaButton:hover {
+  background-color: #2a2352;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.testimonials,
+.about,
+.contact {
+  margin-bottom: 50px;
+  padding: 20px;
+  background-color: #29292975;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgb(0 0 0);
+}
+
+.features {
+  margin-bottom: 50px;
+  padding: 20px;
+  background-color: #29292975;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgb(0 0 0);
+  display: flex;
+  flex-direction: row;
+}
+
+.feature,
+.testimonial {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature img,
+.testimonial img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.feature h2,
+.testimonial h2,
+.about h2,
+.contact h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.feature p,
+.testimonial p,
+.about p,
+.contact p {
+  font-size: 1em;
+  color: #ddd;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.contactForm input,
+.contactForm textarea {
+  width: 80%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #333;
+  color: #fff;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  outline: none;
+  border-color: #3f3a7c;
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+.contactForm button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #3f3a7c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.contactForm button:hover {
+  background-color: #2a2352;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}

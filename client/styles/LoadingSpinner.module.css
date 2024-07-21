@@ -1,13 +1,15 @@
+/* styles/LoadingSpinner.module.css */
 .spinnerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .spinner {
   border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #4a90e2;
   border-radius: 50%;
   width: 120px;
   height: 120px;
