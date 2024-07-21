@@ -32,6 +32,27 @@ export default function RootLayout({
           content="AI, Tarot, Readings, Destiny, Predictions"
         />
         <link rel="icon" href="/tarot-ai-logo.png" />
+        <script
+          data-ad-client="YOUR_ADSENSE_CLIENT_ID"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        ></script>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-9JZHYYJ7JH`}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-9JZHYYJ7JH', {
+                  page_path: window.location.pathname,
+                });
+              `,
+          }}
+        />
         <title>AI Tarot - Discover Your Destiny</title>
       </head>
       <body className={inter.className}>
