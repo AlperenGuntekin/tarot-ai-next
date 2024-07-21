@@ -8,7 +8,8 @@
     margin-top: 50px;
   }
 
-  .features {
+  .features,
+  .ads {
     display: flex;
     flex-direction: column !important;
   }
@@ -100,7 +101,8 @@
   box-shadow: 0 4px 15px rgb(0 0 0);
 }
 
-.features {
+.features,
+.ads {
   margin-bottom: 50px;
   padding: 20px;
   background-color: #29292975;
@@ -111,6 +113,7 @@
 }
 
 .feature,
+.ads,
 .testimonial {
   text-align: center;
   margin-bottom: 30px;
@@ -121,7 +124,8 @@
 }
 
 .feature img,
-.testimonial img {
+.testimonial img,
+.ad img {
   width: 200px;
   height: auto;
   border-radius: 10px;
@@ -129,6 +133,7 @@
 }
 
 .feature h2,
+.ads h2,
 .testimonial h2,
 .about h2,
 .contact h2 {

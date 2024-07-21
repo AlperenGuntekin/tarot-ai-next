@@ -11,9 +11,16 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL || 'http://localhost:3000', // Replace with your frontend domain
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Enable this if your API requires cookies
+    credentials: true,
   })
 );
+
+const corsOptions = {
+  origin: 'https://www.ai-tarot.online/', // Replace with your frontend's URL
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 

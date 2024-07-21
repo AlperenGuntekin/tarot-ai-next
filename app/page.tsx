@@ -77,6 +77,22 @@ const HomePage: React.FC = () => {
             <p>Simple and intuitive interface for a seamless experience.</p>
           </div>
         </section>
+        <section className={styles.ads}>
+          <a href="https://www.interpretationdream.com/" target="blank">
+            <h2>
+              {' '}
+              Do you want your dream to be analyzed with artificial
+              intelligence?
+            </h2>
+            <h2>Dream Interpretation with AI</h2>
+            <div
+              className={styles.ad}
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
+              <img src="/dreamlogo.png" alt="Accurate Predictions" />
+            </div>
+          </a>
+        </section>
         <section className={styles.testimonials}>
           <h2>What Our Users Say</h2>
           <div className={styles.testimonial}>
