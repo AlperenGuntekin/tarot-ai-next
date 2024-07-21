@@ -6,7 +6,6 @@ export interface Card {
   img: string;
   description: string;
   interpretation: {
-    length: any;
     upright: string;
     reversed: string;
   };

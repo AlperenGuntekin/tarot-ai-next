@@ -7,6 +7,11 @@
   .hero img {
     margin-top: 50px;
   }
+
+  .features {
+    display: flex;
+    flex-direction: column !important;
+  }
 }
 
 .container {
