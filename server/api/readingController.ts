@@ -1,12 +1,12 @@
-import { Request, Response } from 'express';
+import { NextApiRequest, NextApiResponse } from 'next';
 import OpenAI from 'openai';
 import { Card } from '../../types/tarot';
 
 const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-export const getReading = async (req: Request, res: Response) => {
+export async function getReading(req: NextApiRequest, res: NextApiResponse) {
   const { questionType, selectedCards, question, birthChartInfo } =
     req.body as {
       questionType: string;
@@ -18,7 +18,6 @@ export const getReading = async (req: Request, res: Response) => {
         birthPlace: string;
       } | null;
     };
-
   let prompt = `You are a tarot card reader. Interpret the following cards for a ${questionType} reading:\n`;
   selectedCards.forEach((card, index) => {
     prompt += `${index + 1}. ${card.name} (${
@@ -51,11 +50,11 @@ export const getReading = async (req: Request, res: Response) => {
     const interpretation =
       response.choices?.[0]?.message?.content?.trim() ??
       'Failed to get the interpretation from OpenAI';
-    res.json({ interpretation });
+    res.status(200).json({ interpretation });
   } catch (error) {
     console.error('Failed to get the interpretation from OpenAI', error);
     res
       .status(500)
       .json({ error: 'Failed to get the interpretation from OpenAI' });
   }
-};
+}
