@@ -8,7 +8,7 @@ const readingController_1 = require("../controllers/readingController");
 const cors_1 = __importDefault(require("cors"));
 const router = express_1.default.Router();
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://www.ai-tarot.online'],
     optionsSuccessStatus: 200,
 };
 router.use((0, cors_1.default)(corsOptions));

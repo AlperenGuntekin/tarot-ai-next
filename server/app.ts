@@ -1,10 +1,10 @@
-import cors from 'cors';
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 
 const corsOptions = {
-  origin: ['https://www.ai-tarot.online'],
+  origin: ['http://localhost:3000', 'https://www.ai-tarot.online'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
