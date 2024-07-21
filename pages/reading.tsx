@@ -236,9 +236,10 @@ const ReadingPage: React.FC = () => {
               className={styles.button}
               onClick={performReading}
               disabled={
-                questionType === 'yesNo'
+                isLoading ||
+                (questionType === 'yesNo'
                   ? !yesNoQuestion || selectedCards.length !== 1
-                  : selectedCards.length !== 3
+                  : selectedCards.length !== 3)
               }
             >
               Interpret Reading
