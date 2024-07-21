@@ -43,8 +43,8 @@ const CardSlider: React.FC<CardSliderProps> = ({
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
     ],
