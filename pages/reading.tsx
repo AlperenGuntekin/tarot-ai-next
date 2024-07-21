@@ -63,19 +63,22 @@ const ReadingPage: React.FC = () => {
     ) {
       setIsLoading(true);
       try {
-        const response = await fetch('http://localhost:5000/api/getReading', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            questionType,
-            selectedCards,
-            question:
-              questionType === 'yesNo' ? yesNoQuestion : specificQuestion,
-            birthChartInfo,
-          }),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/getReading`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              questionType,
+              selectedCards,
+              question:
+                questionType === 'yesNo' ? yesNoQuestion : specificQuestion,
+              birthChartInfo,
+            }),
+          }
+        );
 
         const data = await response.json();
         if (questionType === 'yesNo') {

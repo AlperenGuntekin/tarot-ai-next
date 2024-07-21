@@ -2,19 +2,31 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-// Load environment variables
 dotenv.config();
-
-import { getReading } from './controllers/readingController';
 
 const app = express();
 
-// Use CORS middleware
-app.use(cors());
+// Use the CORS middleware
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || 'http://localhost:3000', // Replace with your frontend domain
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Enable this if your API requires cookies
+  })
+);
 
 app.use(express.json());
 
-app.post('/api/getReading', getReading);
+// Example endpoint
+app.post('/api/getReading', (req, res) => {
+  const { questionType, selectedCards, question, birthChartInfo } = req.body;
+
+  // Your logic to handle the reading
+
+  res.json({
+    interpretation: 'Your reading interpretation here',
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
