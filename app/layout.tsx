@@ -44,20 +44,20 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-9JZHYYJ7JH', {
-                  page_path: window.location.pathname,
-                });
-              `,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9JZHYYJ7JH', {
+              page_path: window.location.pathname,
+            });
+          `,
           }}
         />
         <title>AI Tarot - Discover Your Destiny</title>
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} global-background`}>
         <Header />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

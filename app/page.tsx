@@ -5,6 +5,14 @@ import styles from '../client/styles/HomePage.module.css';
 const HomePage: React.FC = () => {
   return (
     <div className={styles.container}>
+      <Head>
+        <title>AI Tarot - Discover Your Destiny</title>
+        <meta
+          name="description"
+          content="Discover your destiny with AI-powered tarot readings. Get accurate and personalized insights tailored to your life and questions."
+        />
+        <link rel="icon" href="/tarot-ai-logo.png" />
+      </Head>
       <header className={styles.hero}>
         <div>
           <h1 className={styles.title}>
@@ -15,7 +23,7 @@ const HomePage: React.FC = () => {
           </p>
           <div className={styles.ctaButtons}>
             <Link href="/reading" className={styles.ctaButton}>
-              Get a Reading
+              Get a Reading Free
             </Link>
           </div>
         </div>
@@ -40,41 +48,46 @@ const HomePage: React.FC = () => {
           <p>Simple and intuitive interface for a seamless experience.</p>
         </div>
       </section>
-      <section className={styles.ads}>
-        <a href="https://www.interpretationdream.com/" target="blank">
-          <h2>
-            {' '}
-            Do you want your dream to be analyzed with artificial intelligence?
-          </h2>
-          <h2>Dream Interpretation with AI</h2>
-          <div
-            className={styles.ad}
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <img src="/dreamlogo.png" alt="Accurate Predictions" />
-          </div>
-        </a>
-      </section>
-      <section className={styles.testimonials}>
-        <h2>What Our Users Say</h2>
-        <div className={styles.testimonial}>
-          <p>
-            "AI Tarot gave me clarity on my career path. Highly recommended!"
-          </p>
-          <p>- Alex J.</p>
+      <section className={styles.additionalLinks}>
+        <h2>Learn More About Tarot</h2>
+        <div className={styles.cardContainer}>
+          <Link href="/what-is-tarot" className={styles.card}>
+            <img src="/what-is-tarot-reading.webp" alt="What is Tarot?" />
+            <h3>What is Tarot?</h3>
+          </Link>
+          <Link href="/how-to-read-tarot" className={styles.card}>
+            <img src="/how-to-read-tarot.webp" alt="How to Read Tarot" />
+            <h3>How to Read Tarot</h3>
+          </Link>
+          <Link href="/general-tarot-reading" className={styles.card}>
+            <img
+              src="/general-tarot-reading.webp"
+              alt="General Tarot Reading"
+            />
+            <h3>General Tarot Reading</h3>
+          </Link>
+          <Link href="/spesific-tarot-reading" className={styles.card}>
+            <img
+              src="/spesific-tarot-reading.webp"
+              alt="Specific Question Tarot Reading"
+            />
+            <h3>Specific Question Tarot Reading</h3>
+          </Link>
+          <Link href="/yes-no-tarot-reading" className={styles.card}>
+            <img
+              src="/yes-no-tarot-reading.webp"
+              alt="Yes or No Tarot Reading"
+            />
+            <h3>Yes or No Tarot Reading</h3>
+          </Link>
+          <Link href="/birth-chart-tarot-reading" className={styles.card}>
+            <img
+              src="/birth-chart-tarot-reading.webp"
+              alt="Birth Chart Tarot Reading"
+            />
+            <h3>Birth Chart Tarot Reading</h3>
+          </Link>
         </div>
-        <div className={styles.testimonial}>
-          <p>"The readings are so accurate, it’s like magic!"</p>
-          <p>- Sara L.</p>
-        </div>
-      </section>
-      <section className={styles.about}>
-        <h2>About AI Tarot</h2>
-        <p>
-          AI Tarot combines the ancient art of tarot reading with the precision
-          of modern AI technology. Our goal is to provide you with accurate and
-          insightful readings that can help guide your life's journey.
-        </p>
       </section>
       <section className={styles.contact}>
         <h2>Schedule a Reading Today</h2>

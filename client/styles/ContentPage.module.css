@@ -1,0 +1,157 @@
+.body {
+  color: rgb(var(--foreground-rgb));
+  background: url('/background.webp') center center fixed;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: -1;
+  min-height: 100vh;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .header {
+    text-align: center;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #292929;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.contentImage {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 1.2em;
+  color: #ddd;
+}
+
+.content {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.content h2 {
+  font-size: 1.8em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  margin-bottom: 20px;
+}
+
+.content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.content ul li {
+  margin-bottom: 10px;
+}
+
+.content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.content a {
+  color: #3f3a7c;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.content a:hover {
+  color: #2a2352;
+}
+
+.relatedLinks {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+}
+
+.relatedLinks h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.relatedLinks ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.relatedLinks ul li {
+  margin-bottom: 10px;
+}
+
+.relatedLinks ul li a {
+  color: #9f9cc3;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.relatedLinks ul li a:hover {
+  color: #2a2352;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.ctaButton {
+  padding: 15px 30px;
+  font-size: 1em;
+  background-color: #3f3a7c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+}
+
+.ctaButton:hover {
+  background-color: #2a2352;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
